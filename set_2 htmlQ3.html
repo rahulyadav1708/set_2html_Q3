@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>video custom</title>
+    </head>
+    <body>
+        <video id="myVideo" width="640" controls="autoplay">
+            <source src="videplayback.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            <track label="English" kind="subtitles" srclang="en" src="subtitles_en.vtt" default>
+        
+        </video>
+        <button onclick="toggleFullScreen()">Toggle Fullscreen</button>
+    
+        <button onclick="setPlaybackRate(0.5)">0.5x Speed</button>
+        <button onclick="setPlaybackRate(1)">Normal Speed</button>
+        <button onclick="setPlaybackRate(1.5)">1.5x Speed</button>
+        <button onclick="setPlaybackRate(2)">2x Speed</button>
+    
+        <script>
+            function setPlaybackRate(rate) {
+                var video = document.getElementById('myVideo');
+                video.playbackRate = rate;
+            }
+        </script>
+        <script>
+            function toggleFullScreen() {
+                var video = document.getElementById('myVideo');
+                if (!document.fullscreenElement) {
+                    // Enter full-screen mode
+                    video.requestFullscreen().catch(err => {
+                        console.log(`Error attempting to enter full-screen mode: ${err.message} (${err.name})`);
+                    });
+                } else {
+                    // Exit full-screen mode
+                    document.exitFullscreen().catch(err => {
+                        console.log(`Error attempting to exit full-screen mode: ${err.message} (${err.name})`);
+                    });
+                }
+            }
+        </script>
+    
+    </body>
+
+</html>
